@@ -17,6 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: Build APK
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
         
@@ -28,13 +29,6 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-          
-      - name: Fetch credential file
-        uses: timheuer/base64-to-file@v1.1
-        with:
-          encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
-          filename: credential_file.json
-          destination-path: android/Firebase-Distribution-Github-Action/
           
       - name: Configure Keystore
         run: |
@@ -63,27 +57,61 @@ jobs:
       - name: Build APK
         run: flutter build apk
           
-      
-
-      - name: Firebase App Distribution
-#        # You may pin to the exact commit or the version.
-        # uses: wzieba/Firebase-Distribution-Github-Action@d6e3b20d53da54e1ffd2082a8132e120b5bd1bb2
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+      - name: Fetch credential file
+        uses: timheuer/base64-to-file@v1.1
         with:
-          # App id can be found on the General Settings page
-          appId: ${{ secrets.ANDROID_APP_ID }}
-          # Upload token - see Firebase CLI Reference
-          # Reemplazado por service credential
-          # token: 1//0hNthebDrm-50CgYIARAAGBESNwF-L9Irq67Y3grZ6HVLhajuHoY_H_lmO_yGeOCne5F8YW_7RbyBnkHM5jhx9qWRPevW_NhV8pg
-          # Service credential file
-          serviceCredentialsFile: ${{ github.workspace }}/Firebase-Distribution-Github-Action/src/credential_file.json
-          # Artifact to upload (.apk or .ipa)
-          file: ${{ github.workspace }}/src/build/app/outputs/flutter-apk/app-release.apk
-          # Distribution groups
-          # groups: Develop
-          # Release notes visible on release page
-#          releaseNotes: # optional
-          # Release notes visible on release page
-#          releaseNotesFile: # optional
-          # Flag that can included to print verbose log output.
-#          debug: # optional
+          encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
+          filename: credential_file.json
+          destination-path: android/Firebase-Distribution-Github-Action/
+
+      - name: Upload Credential Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: firebase-credentials
+          path: android/Firebase-Distribution-Github-Action/
+
+      - name: Upload SPK Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+
+  distribute:
+      name: Dsitribute APK
+      # The type of runner that the job will run on
+      runs-on: ubuntu-latest
+      steps:
+
+        - name: Download Credential Artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: firebase-credentials
+
+        - name: Download SPK Artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: apk
+
+        - name: Firebase App Distribution
+  #       # You may pin to the exact commit or the version.
+          # uses: wzieba/Firebase-Distribution-Github-Action@d6e3b20d53da54e1ffd2082a8132e120b5bd1bb2
+          uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+          with:
+            # App id can be found on the General Settings page
+            appId: ${{ secrets.ANDROID_APP_ID }}
+            # Upload token - see Firebase CLI Reference
+            # Reemplazado por service credential
+            # token: 1//0hNthebDrm-50CgYIARAAGBESNwF-L9Irq67Y3grZ6HVLhajuHoY_H_lmO_yGeOCne5F8YW_7RbyBnkHM5jhx9qWRPevW_NhV8pg
+            # Service credential file
+            serviceCredentialsFile: credential_file.json
+            # Artifact to upload (.apk or .ipa)
+            file: app-release.apk
+            # Distribution groups
+            # groups: Develop
+            # Release notes visible on release page
+  #          releaseNotes: # optional
+            # Release notes visible on release page
+  #          releaseNotesFile: # optional
+            # Flag that can included to print verbose log output.
+  #          debug: # optional
