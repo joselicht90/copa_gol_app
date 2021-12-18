@@ -11,6 +11,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/../../../../../../src/flutter_2.8.0/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.8/android" />
+            <option value="$PROJECT_DIR$/../../../../../../src/flutter_2.8.0/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.9/android" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

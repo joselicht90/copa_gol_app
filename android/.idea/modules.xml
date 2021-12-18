@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1306283063/android.fluttertoast.iml" filepath="$PROJECT_DIR$/.idea/modules/-1306283063/android.fluttertoast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/998052678/android.path_provider_android.iml" filepath="$PROJECT_DIR$/.idea/modules/998052678/android.path_provider_android.iml" />
     </modules>
   </component>
 </project>
