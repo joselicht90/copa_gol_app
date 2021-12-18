@@ -35,7 +35,7 @@ jobs:
           cd android
           echo "$ANDROID_KEYSTORE_FILE" > keystore.jks.b64
           base64 -d -i keystore.jks.b64 > app/key.jks
-          echo "storeFile=file('key.jks')" >> key.properties
+          echo "storeFile=key.jks" >> key.properties
           echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
           echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
           echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
