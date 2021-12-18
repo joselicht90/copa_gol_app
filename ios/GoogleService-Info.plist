@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>888582480178-12hkgi0hg7e2l3ussn7r120sfesadl7g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.888582480178-12hkgi0hg7e2l3ussn7r120sfesadl7g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC0ukY2b2t7n6Kl0O0-AGji3h-cXYsKGPo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>888582480178</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ar.com.copa-gol-app</string>
+	<key>PROJECT_ID</key>
+	<string>copa-gol</string>
+	<key>STORAGE_BUCKET</key>
+	<string>copa-gol.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:888582480178:ios:1c8be9761ef64d169ff72b</string>
+</dict>
+</plist>
