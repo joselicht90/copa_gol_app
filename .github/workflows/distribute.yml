@@ -56,19 +56,6 @@ jobs:
       
       - name: Build APK
         run: flutter build apk
-          
-      - name: Fetch credential file
-        uses: timheuer/base64-to-file@v1.1
-        with:
-          encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
-          filename: credential_file.json
-          destination-path: android/Firebase-Distribution-Github-Action/
-
-      - name: Upload Credential Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: firebase-credentials
-          path: android/Firebase-Distribution-Github-Action/credential.json
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v2
@@ -83,16 +70,17 @@ jobs:
       # The type of runner that the job will run on
       runs-on: ubuntu-latest
       steps:
-
-        - name: Download Credential Artifact
-          uses: actions/download-artifact@v2
-          with:
-            name: firebase-credentials
-
-        - name: Download SPK Artifact
+        - name: Download APK Artifact
           uses: actions/download-artifact@v2
           with:
             name: apk
+            
+        - name: Fetch credential file
+          uses: timheuer/base64-to-file@v1.1
+          with:
+            encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
+            filename: credential_file.json
+            destination-path: Firebase-Distribution-Github-Action/
 
         - name: Firebase App Distribution
   #       # You may pin to the exact commit or the version.
@@ -105,7 +93,7 @@ jobs:
             # Reemplazado por service credential
             # token: 1//0hNthebDrm-50CgYIARAAGBESNwF-L9Irq67Y3grZ6HVLhajuHoY_H_lmO_yGeOCne5F8YW_7RbyBnkHM5jhx9qWRPevW_NhV8pg
             # Service credential file
-            serviceCredentialsFile: credential_file.json
+            serviceCredentialsFile: Firebase-Distribution-Github-Action/credential_file.json
             # Artifact to upload (.apk or .ipa)
             file: app-release.apk
             # Distribution groups
