@@ -76,13 +76,13 @@ jobs:
             name: apk
             
         - name: Fetch credential file
+          id: getting_credential
           uses: timheuer/base64-to-file@v1.1
           with:
             encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
             filename: credential_file.json
-            destination-path: Firebase-Distribution-Github-Action/
 
-        - name: Firebase App Distribution
+        - name: Firebase App Distribution APK
   #       # You may pin to the exact commit or the version.
           # uses: wzieba/Firebase-Distribution-Github-Action@d6e3b20d53da54e1ffd2082a8132e120b5bd1bb2
           uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
@@ -93,7 +93,7 @@ jobs:
             # Reemplazado por service credential
             # token: 1//0hNthebDrm-50CgYIARAAGBESNwF-L9Irq67Y3grZ6HVLhajuHoY_H_lmO_yGeOCne5F8YW_7RbyBnkHM5jhx9qWRPevW_NhV8pg
             # Service credential file
-            serviceCredentialsFile: Firebase-Distribution-Github-Action/credential_file.json
+            serviceCredentialsFile: ${{ steps.getting_credential.outputs.filePath }}
             # Artifact to upload (.apk or .ipa)
             file: app-release.apk
             # Distribution groups
