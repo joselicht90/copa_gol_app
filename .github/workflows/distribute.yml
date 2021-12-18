@@ -33,7 +33,7 @@ jobs:
       - uses: subosito/flutter-action@v1.5.3
         with:
           flutter-version: '2.8.0'
-      - run: which flutter
+      - run: echo "Flutter path $FLUTTER_ROOT"
       - run: flutter pub get
       - run: flutter build apk  
       - run: ls build/app/outputs/flutter-apk
