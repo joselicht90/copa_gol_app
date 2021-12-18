@@ -29,6 +29,13 @@ jobs:
         with:
           java-version: '12.x'
           
+      - name: Fetch credential file
+        uses: timheuer/base64-to-file@v1.1
+        with:
+          encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
+          filename: credential_file.json
+          destination-path: android/Firebase-Distribution-Github-Action/
+          
       - name: Configure Keystore
         run: |
           ls
@@ -56,12 +63,7 @@ jobs:
       - name: Build APK
         run: flutter build apk
           
-      - name: Fetch credential file
-        uses: timheuer/base64-to-file@v1.1
-        with:
-          encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
-          filename: credential_file.json
-          destination-path: ${{ github.workspace }}/Firebase-Distribution-Github-Action/
+      
 
       - name: Firebase App Distribution
 #        # You may pin to the exact commit or the version.
@@ -69,7 +71,7 @@ jobs:
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           # App id can be found on the General Settings page
-          appId: ${{ secrets.FIREBASE_APP_ID }}
+          appId: ${{ secrets.ANDROID_APP_ID }}
           # Upload token - see Firebase CLI Reference
           # Reemplazado por service credential
           # token: 1//0hNthebDrm-50CgYIARAAGBESNwF-L9Irq67Y3grZ6HVLhajuHoY_H_lmO_yGeOCne5F8YW_7RbyBnkHM5jhx9qWRPevW_NhV8pg
