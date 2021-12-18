@@ -77,7 +77,18 @@ class ThemeCubit extends Cubit<ThemeData> {
         ),
       ),
     ),
-    textTheme: GoogleFonts.montserratTextTheme(),
+    textTheme: GoogleFonts.montserratTextTheme(
+      const TextTheme(
+        headline5: TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+        ),
+        headline6: TextStyle(
+          color: Color(0xFF999894),
+          fontSize: 13,
+        ),
+      ),
+    ),
   );
 
   static final _darkTheme = ThemeData(
@@ -96,6 +107,27 @@ class ThemeCubit extends Cubit<ThemeData> {
       onError: Colors.black,
       surface: Colors.black,
       onSurface: Colors.white,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(
+          const EdgeInsets.all(
+            15,
+          ),
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        textStyle: MaterialStateProperty.all(
+          const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 3,
+          ),
+        ),
+      ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
@@ -131,7 +163,18 @@ class ThemeCubit extends Cubit<ThemeData> {
         ),
       ),
     ),
-    textTheme: GoogleFonts.montserratTextTheme(),
+    textTheme: GoogleFonts.montserratTextTheme(
+      const TextTheme(
+        headline5: TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+        ),
+        headline6: TextStyle(
+          color: Color(0xFF999894),
+          fontSize: 13,
+        ),
+      ),
+    ),
   );
 
   /// Toggles the current brightness between light and dark.

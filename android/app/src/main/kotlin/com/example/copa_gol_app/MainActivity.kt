@@ -1,4 +1,4 @@
-package com.example.copa_gol_app
+package ar.com.copa_gol_app
 
 import io.flutter.embedding.android.FlutterActivity
 

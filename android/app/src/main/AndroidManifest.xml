@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.copa_gol_app">
+    package="ar.com.copa_gol_app">
    <application
         android:label="copa_gol_app"
         android:name="${applicationName}"

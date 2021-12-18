@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888582480178",
+    "project_id": "copa-gol",
+    "storage_bucket": "copa-gol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888582480178:android:abfb0e2f245a0cd49ff72b",
+        "android_client_info": {
+          "package_name": "ar.com.copa_gol_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888582480178-k1cmb5jn4leblkmpdsbpf7miu7f6nico.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbAZO93FlgdItExsTOSC1cjVaElha1TUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888582480178-k1cmb5jn4leblkmpdsbpf7miu7f6nico.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,5 @@
 import 'package:copa_gol_app/components/custom_text_field.dart';
+import 'package:copa_gol_app/pages/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -86,7 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/forgot_password');
+                        },
                         child: Text(
                           'Olvide mi contraseña',
                           style: TextStyle(

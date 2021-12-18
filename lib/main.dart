@@ -1,6 +1,7 @@
 import 'package:copa_gol_app/blocs/app_bloc_observer.dart';
 import 'package:copa_gol_app/blocs/global_bloc.dart';
 import 'package:copa_gol_app/blocs/theme_bloc.dart';
+import 'package:copa_gol_app/pages/forgot_password.dart';
 import 'package:copa_gol_app/pages/home.dart';
 import 'package:copa_gol_app/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +49,7 @@ class MyMaterialApp extends StatelessWidget {
           routes: {
             '/': (context) => const HomePage(),
             '/login': (context) => const LoginPage(),
+            '/forgot_password': (context) => const ForgotPasswordPage(),
           },
         );
       },
