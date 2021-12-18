@@ -33,6 +33,8 @@ jobs:
       - uses: subosito/flutter-action@v1.5.3
         with:
           flutter-version: '2.8.0'
+      - run: echo ${FLUTTER_HOME}
+      - run: echo ::add-path::${FLUTTER_HOME}/bin
       - run: flutter pub get
       - run: flutter build apk  
       - run: ls build/app/outputs/flutter-apk
