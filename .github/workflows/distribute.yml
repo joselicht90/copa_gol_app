@@ -68,9 +68,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: firebase-credentials
-          path: android/Firebase-Distribution-Github-Action/
+          path: android/Firebase-Distribution-Github-Action/credential.json
 
-      - name: Upload SPK Artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v2
         with:
           name: apk
