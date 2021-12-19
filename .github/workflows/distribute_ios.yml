@@ -1,0 +1,88 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build & Distribute iOS
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build iOS
+    # The type of runner that the job will run on
+    runs-on: macOS-latest
+        
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+          
+      - name: Install Flutter
+        uses: britannio/action-install-flutter@v1
+        with:
+          version: '2.8.0'
+          
+      - name: Get Packages
+        run: flutter pub get
+      
+      - name: Build IPA
+        run: flutter build ios --release --no-codesign
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ipa
+          path: build/ios/iphoneos
+
+
+  distribute:
+      name: Dsitribute APK
+      needs: build
+      # The type of runner that the job will run on
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Download IPA Artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: ipa
+            
+        - name: Fetch credential file
+          id: getting_credential
+          uses: timheuer/base64-to-file@v1.1
+          with:
+            encodedString: ${{ secrets.FIREBASE_CREDENTIALS }}
+            fileName: credential_file.json
+            fileDir: ${{github.workspace}}/
+
+        - name: Firebase App Distribution APK
+  #       # You may pin to the exact commit or the version.
+          # uses: wzieba/Firebase-Distribution-Github-Action@d6e3b20d53da54e1ffd2082a8132e120b5bd1bb2
+          uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+          with:
+            # App id can be found on the General Settings page
+            appId: ${{ secrets.IOS_APP_ID }}
+            serviceCredentialsFile: ${{github.workspace}}/credential_file.json
+            # Artifact to upload (.apk or .ipa)
+            file: Runner.ipa
+            # Distribution groups
+            # groups: Develop
+            # Release notes visible on release page
+  #          releaseNotes: # optional
+            # Release notes visible on release page
+  #          releaseNotesFile: # optional
+            # Flag that can included to print verbose log output.
+  #          debug: # optional
