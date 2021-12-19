@@ -49,8 +49,8 @@ class MyMaterialApp extends StatelessWidget {
           theme: context.read<ThemeCubit>().state,
           initialRoute: '/login',
           routes: {
-            '/': (context) => const HomePage(),
             '/login': (context) => const LoginPage(),
+            '/': (context) => const HomePage(),
             '/forgot_password': (context) => const ForgotPasswordPage(),
           },
         );
