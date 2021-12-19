@@ -26,3 +26,6 @@ ios/Runner.xcworkspace/contents.xcworkspacedata
 ios/Podfile.lock
 ios/Runner.xcodeproj/project.pbxproj
 ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+
+.vscode/settings.json
